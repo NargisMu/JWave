@@ -4,36 +4,44 @@ import interfaces.IWavelet;
 
 public class Morlet implements IWavelet {
 
-    private double Fs = 1.5;
+    private double Fs;   // частота дискретизации
     private int nv = 12;
     private int nOctave = 8;
+    private double dt = 1 / Fs;
+    private double s0 = 2 * dt;    // минимальный масштаб
+    private double J;
+
+    public Morlet(Double Fs, int nv, int nOctave, int lenthOfSignal) {
+        this.Fs = Fs;
+        this.nOctave = nOctave;
+        this.nv = nv;
+        findJ(lenthOfSignal);
+    }
 
     @Override
     public IWavelet getMotherWavlet() {
         return this;
     }
 
-    double getScaleMinimum(){
-        return 2*getTimeStep();
-    }
-
-    double[] getMaximum(){
-        double a0 = Math.pow(2,1/nv);
-        double[] scales = new double[nv*nOctave-1];
-
+    private double[] scales() {
+        double a0 = Math.pow(2, 1 / nv);
+        double[] scales = new double[nv * nOctave - 1];
         return scales;
     }
 
-    double getTimeStep(){
-        return 1/Fs;
+    private double findJ(int lenthOfSignal) {
+
+        J = Math.floor(22);
+        return J;
     }
 
-    double getFs(){
+    @Override
+    public double getFs() {
         return Fs;
     }
 
-    IWavelet setFs(Double frequency){
-        this.Fs = frequency;
-        return this;
+    public static int log2(int N) {
+        int result = (int) (Math.log(N) / Math.log(2));
+        return result;
     }
 }
