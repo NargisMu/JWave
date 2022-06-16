@@ -5,16 +5,17 @@ import interfaces.IWavelet;
 public class Morlet implements IWavelet {
 
     private double Fs;   // частота дискретизации
-    private int nv = 12;
-    private int nOctave = 8;
-    private double dt = 1 / Fs;
-    private double s0 = 2 * dt;    // минимальный масштаб
     private double J;
+    private double w0;          // параметр вейвлета Морлет
+    private int voices = 12;
+    private int octave = 8;
+    private double dt = 1 / Fs;     // временной шаг
+    private double s0 = 2 * dt;    // минимальный масштаб
 
-    public Morlet(Double Fs, int nv, int nOctave, int lenthOfSignal) {
+
+    public Morlet(Double Fs, double w0, int lenthOfSignal) {
         this.Fs = Fs;
-        this.nOctave = nOctave;
-        this.nv = nv;
+        this.w0 = w0;
         findJ(lenthOfSignal);
     }
 
@@ -24,13 +25,12 @@ public class Morlet implements IWavelet {
     }
 
     private double[] scales() {
-        double a0 = Math.pow(2, 1 / nv);
-        double[] scales = new double[nv * nOctave - 1];
+        double a0 = Math.pow(2, 1 / voices);
+        double[] scales = new double[voices * octave - 1];
         return scales;
     }
 
     private double findJ(int lenthOfSignal) {
-
         J = Math.floor(22);
         return J;
     }

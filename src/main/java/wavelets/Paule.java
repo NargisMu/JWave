@@ -8,4 +8,9 @@ public class Paule implements IWavelet {
     public IWavelet getMotherWavlet() {
         return this;
     }
+
+    @Override
+    public double getFs() {
+        return 0;
+    }
 }

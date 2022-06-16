@@ -7,4 +7,9 @@ public class DOG implements IWavelet {
     public IWavelet getMotherWavlet() {
         return this;
     }
+
+    @Override
+    public double getFs() {
+        return 0;
+    }
 }
