@@ -1,6 +1,8 @@
 package wavelets;
 
 import interfaces.IWavelet;
+import org.apache.commons.math3.transform.DftNormalization;
+import org.apache.commons.math3.transform.FastFourierTransformer;
 
 public class Morlet implements IWavelet {
 
