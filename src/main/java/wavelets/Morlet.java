@@ -1,8 +1,6 @@
 package wavelets;
 
 import interfaces.IWavelet;
-import org.apache.commons.math3.transform.DftNormalization;
-import org.apache.commons.math3.transform.FastFourierTransformer;
 
 public class Morlet implements IWavelet {
 
@@ -33,6 +31,7 @@ public class Morlet implements IWavelet {
     }
 
     private double findJ(int lenthOfSignal) {
+
         J = Math.floor(22);
         return J;
     }
